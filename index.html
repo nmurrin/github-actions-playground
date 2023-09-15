@@ -17,9 +17,42 @@
 
 <body>
 
-<h1>Sample</h1>
+<h1>Documenting branch strategy and ci/cd implications</h1>
 
-<p>Just a sample file that I can change to mess around with different versions.</p>
+<p>The goal of this approach is as follows:</p>
+
+<ul>
+    <li>Trunk based development - Develop features agains a master branch</li>
+    <li>Integrate with master branch using Pull Requests to merge a feature brach</li>
+    <li>Create a release brach for testing in pre-prod / migration to production</li>
+    <li>Any fixes committed to release branch should also be committed to master</li>
+</ul>
+
+<p>Development Process (System / UAT)</p>
+
+<ul>
+    <li>Developer creates a feature branch for feature development</li>
+    <li>After change and tests are implemented, push branch to remote (can push before)</li>
+    <li>Raise a PR to merge feature branch to master</li>
+    <li>Code will automatically be migrated to system environment</li>
+    <li>Use current approach in GitHub Actions to migrate to UAT</li>
+</ul>
+
+<p>Testing / Deployment Process (Pre-Prod / Production)</p>
+
+<ul>
+    <li>On GitHub - Create a release branch from master</li>
+    <li>Naming convention will be "release/release-master-1.0.0</li>
+    <li>Minor version committed for every release branch, major version committed for breaking changes / large changes</li>
+    <li>Can migrate to pre-prod at this point - the GitHub action will read the version from the branch name</li>
+    <li>If fixes / changes made to the release branch, then will need to tag the commit before migrating again</li>
+    <li>The tag should indicate the new version for the artifacts with a new patch number</li>
+    <li> > git tag 1.0.1 release/release-master-1.0.0</li>
+    <li> > git push origin 1.0.1</li>
+    <li>Now can migrate to pre-prod again - the GitHub action will find the tag to generate the artifacts version</li>
+</ul>
+
+<p>The GitHub action will have to be written to use a gitversion extension and we will include a Gitversion.yml file in each project to configure our desired versioning strategy.</p>
 
 </body>
 </html>

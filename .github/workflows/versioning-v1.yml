@@ -26,9 +26,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - uses: actions/setup-gitversion@v1.0.0
         with:
-          gitversion-version: 5.1.1
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
 
       # Runs a single command using the runners shell
       - name: Run a one-line script

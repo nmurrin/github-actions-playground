@@ -36,6 +36,7 @@ jobs:
 
 
       - name: Determine Version
+        id:   gitversion # id to later be referenced
         uses: gittools/actions/gitversion/execute@v0
         with:
           useConfigFile: true
@@ -46,6 +47,13 @@ jobs:
           echo "Minor: ${{ steps.gitversion.outputs.minor }}"
           echo "Patch: ${{ steps.gitversion.outputs.patch }}"
           echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+
+        - name: Display GitVersion variables (without prefix)
+          run: |
+            echo "Major: ${{ env.major }}"
+            echo "Minor: ${{ env.minor }}"
+            echo "Patch: ${{ env.patch }}"
+            echo "SemVer: ${{ env.semVer }}"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script

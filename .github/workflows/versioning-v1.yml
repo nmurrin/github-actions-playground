@@ -54,6 +54,10 @@ jobs:
           echo "Minor: ${{ env.minor }}"
           echo "Patch: ${{ env.patch }}"
           echo "SemVer: ${{ env.semVer }}"
+          echo "Major: ${{ env.GitVersion_Major }}"
+          echo "Minor: ${{ env.GitVersion_Minor }}"
+          echo "Patch: ${{ env.GitVersion_Patch }}"
+          echo "SemVer: ${{ env.GitVersion_SemVer }}"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script

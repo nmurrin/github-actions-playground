@@ -58,7 +58,8 @@ jobs:
           echo "CommitsSinceVersionSource: ${{ env.commitsSinceVersionSource }}"
 
       - name: Display suggested artifact versionSpec
-        run: echo '"ArtifactName"': '"${{ env.GitVersion_Major }}.${{ env.GitVersion_Minor }}.${{ env.commitsSinceVersionSource }}"'
+        run: |
+          echo "ArtifactName: ${{ env.GitVersion_Major }}.${{ env.GitVersion_Minor }}.${{ env.commitsSinceVersionSource }}"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script

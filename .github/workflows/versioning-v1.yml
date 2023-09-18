@@ -55,11 +55,11 @@ jobs:
           echo "Minor: ${{ env.GitVersion_Minor }}"
           echo "Patch: ${{ env.GitVersion_Patch }}"
           echo "SemVer: ${{ env.GitVersion_SemVer }}"
-          echo "CommitsSinceVersionSource: ${{ env.commitsSinceVersionSource }}"
+          echo "CommitsSinceVersionSource: ${{ env.GitVersion_CommitsSinceVersionSource }}"
 
       - name: Display suggested artifact versionSpec
         run: |
-          echo "ArtifactName: ${{ env.GitVersion_Major }}.${{ env.GitVersion_Minor }}.${{ env.commitsSinceVersionSource }}"
+          echo "ArtifactName: ${{ env.GitVersion_Major }}.${{ env.GitVersion_Minor }}.${{ env.GitVersion_CommitsSinceVersionSource }}"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
